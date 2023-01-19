@@ -1,4 +1,5 @@
 use std::env;
+use std::fs;
 
 fn main() {
     //println!("Hello, world!");
@@ -16,4 +17,8 @@ fn main() {
 
     println!("Searching for {}", _query);
     println!("In file {}", _file_path);
+
+    let contents = fs::read_to_string(_file_path).expect("Should have been able to read the file");
+
+    println!("With text:\n{contents}");
 }
