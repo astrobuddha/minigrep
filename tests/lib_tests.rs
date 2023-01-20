@@ -2,7 +2,6 @@
 
 #[cfg(test)]
 mod tests {
-    use super::*;
 
     #[test]
     fn one_result() {
@@ -25,6 +24,6 @@ safe, fast, productive.
 Pick three.
 Trust me.";
 
-        assert_eq!(vec!["Rust:", "Trust me."], minigrep::search(query, contents));
+        assert_eq!(vec!["Rust:", "Trust me."], minigrep::search_case_insensitive(query, contents));
     }
 }
