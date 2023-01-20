@@ -1,4 +1,4 @@
-//use minigrep::lib;
+//use minigrep::search;
 
 #[cfg(test)]
 mod tests {
