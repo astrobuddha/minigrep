@@ -1,7 +1,7 @@
 use std::env;
-use std::fs;
 use std::process;
-use std::error::Error;
+
+use minigrep::Config;
 
 // Prints and returns the value of a given expression for quick and dirty debugging.
 // dbg!(args);
@@ -20,40 +20,8 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
-    if let Err(e) = run(config) {
+    if let Err(e) = minigrep::run(config) {
         println!("Application error: {e}");
         process::exit(1);
-    }
-}
-
-
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(config.file_path)?;
-
-    println!("With text:\n{contents}");
-
-    Ok(())
-}
-
-struct Config {
-    query: String,
-    file_path: String,
-}
-
-
-impl Config {
-    fn build(args: &[String]) -> Result<Config, &'static str> {
-
-        if args.len() != 3 {
-            return Err("incorrect number of carguments");
-        }
-
-        let query = &args[1].clone();
-        let file_path = &args[2].clone();
-
-        Ok(Config {
-            query: query.to_string(),
-            file_path: file_path.to_string()
-        })
     }
 }
